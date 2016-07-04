@@ -16,7 +16,6 @@ then open a pull request. :zap:
 #### Whitespace
 
  * Tabs, not spaces.
- * End files with a newline.
  * Make liberal use of vertical whitespace to divide code into logical chunks.
  * Don’t leave trailing whitespace.
    * Not even leading indentation on blank lines.
@@ -119,12 +118,11 @@ subscript(index: Int) -> T {
 
 _Rationale:_ The intent and meaning of the first version are clear, and results in less code.
 
-#### Always specify access control explicitly for top-level definitions
+#### Always specify inernal or private access control explicitly for top-level definitions
 
 Top-level functions, types, and variables should always have explicit access control specifiers:
 
 ```swift
-public var whoopsGlobalState: Int
 internal struct TheFez {}
 private func doTheThings(things: [Thing]) {}
 ```
@@ -300,6 +298,45 @@ func <|< <A>(lhs: A, rhs: A) -> A
 ```
 
 _Rationale:_ Operators consist of punctuation characters, which can make them difficult to read when immediately followed by the punctuation for a type or value parameter list. Adding whitespace separates the two more clearly.
+
+#### Group methods by logical extensions
+
+Functions that are related to a specific purpose should be in the same unit or extension:
+
+```swift
+extension TableViewController {
+
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     }
+```
+
+#### Functions that have a body of more than 3 lines, must have a blank line separating the declaration
+
+Instead of doing this:
+
+```swift
+func operation() -> Int {
+	let x = 4
+	let y = x + 2
+	let z = y + 3
+	return z
+}
+```
+Do this:
+
+```swift
+func operation() -> Int {
+
+	let x = 4
+	let y = x + 2
+	let z = y + 3
+	return z
+}
+```
+
 
 #### Translations
 
